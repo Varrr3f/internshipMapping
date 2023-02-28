@@ -1,0 +1,26 @@
+CREATE TABLE Client(
+    id long PRIMARY KEY,
+    first_name varchar,
+    last_name varchar,
+    passport_series varchar,
+    passport_number varchar
+);
+
+CREATE TABLE application(
+    id long PRIMARY KEY,
+    number int,
+    amount int,
+    currency varchar,
+    applicant_id long not null,
+    FOREIGN KEY (applicant_id) REFERENCES Client (id),
+    guarantor_id long not null,
+    FOREIGN KEY (guarantor_id) REFERENCES Client (id)
+);
+
+CREATE TABLE phone(
+    id long PRIMARY KEY,
+    client_id long not null,
+    FOREIGN KEY (client_id) REFERENCES Client (id),
+    type varchar,
+    number varchar
+)
